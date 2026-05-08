@@ -1,6 +1,6 @@
 **Bug #1 — Broken Access Control**
 
-Di `routes/web.php`, route `/admin/dashboard` didaftarkan tanpa middleware apapun. Akibatnya siapapun bisa akses halaman admin langsung lewat URL, bahkan tanpa login. Di `AdminController.php` juga tidak ada pengecekan role atau `authorize()` sama sekali. Fixnya pakai `Route::middleware(['auth', 'role:admin'])` di routes, dan `$this->authorize()` di controller.
+Di `routes/api.php`, route `/admin/dashboard` didaftarkan tanpa middleware apapun. Akibatnya siapapun bisa akses halaman admin langsung lewat URL, bahkan tanpa login. Di `AdminController.php` juga tidak ada pengecekan role atau `authorize()` sama sekali. Fixnya pakai `Route::middleware(['auth', 'role:admin'])` di routes, dan `$this->authorize()` di controller.
 
 ---
 
