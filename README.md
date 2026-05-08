@@ -6,8 +6,7 @@ Di `routes/web.php`, route `/admin/dashboard` didaftarkan tanpa middleware apapu
 
 **Bug #2 — Authentication Bypass**
 
-Di `AuthController.php`, fungsi login hanya cari user by email, lalu langsung panggil `Auth::loginUsingId($user->id)` tanpa cek password sama sekali. Jadi siapapun yang tahu email orang lain bisa login ke akunnya tanpa perlu tahu passwordnya. Fixnya pakai `Auth::attempt(['email' => ..., 'password' => ...])` yang otomatis verifikasi password, ditambah `session()->regenerate()` untuk cegah session fixation.
-
+Di `AuthController.php`, fungsi login hanya cari user by email, lalu langsung panggil `Auth::loginUsingId($user->id)` tanpa cek password sama sekali. Jadi siapapun yang tahu email orang lain bisa login ke akunnya tanpa perlu tahu passwordnya. Fixnya pakai `Auth::attempt(['email' => ..., 'password' => ...])` yang otomatis verifikasi password,
 ---
 
 **Bug #3 — Plaintext Password**
